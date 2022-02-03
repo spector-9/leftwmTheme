@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# System
+if [ -x "$(command -v sxhkd)" ]; then
+  sxhkd &
+fi
+if [ -x "$(command -v dunst)" ]; then
+  dunst &
+fi
+if [ -x "$(command -v parcellite)" ]; then
+  parcellite -n &
+fi
+if [ -x "$(command -v udiskie)" ]; then
+  udiskie &
+fi
+if [ -x "$(command -v xss-lock)" ]; then
+  xss-lock -- betterlockscreen -l &
+fi
+if [ -x "$(command -v /usr/lib/mate-polkit/polkit-mate-authentication-agent-1)" ]; then
+  /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+fi
+
+# Systray
+#if [ -x "$(command -v pasystray)" ]; then
+#  pasystray -m 100 &
+#fi
+if [ -x "$(command -v nm-applet)" ]; then
+  nm-applet &
+fi
+if [ -x "$(command -v xfce4-power-manager)" ]; then
+  xfce4-power-manager &
+fi
+if [ -x "$(command -v blueman-applet)" ]; then
+  blueman-applet &
+fi
+
+# Audio Daemons
+if [ -x "$(command -v dunst)" ]; then
+  mpd &
+fi
+if [ -x "$(command -v pipewire)" ]; then
+  pipewire &
+fi
+if [ -x "$(command -v pipewire-media-session)" ]; then
+  pipewire-media-session &
+fi
+if [ -x "$(command -v pipewire-pulse)" ]; then
+  pipewire-pulse &
+fi
+
+# Extras
+if [ -x "$(command -v calcursenotification)" ]; then
+  calcursenotification 15 &
+fi
+
+
+xsetroot -cursor_name left_ptr
+xset r rate 230 40 &
